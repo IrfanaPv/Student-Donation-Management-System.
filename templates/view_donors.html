@@ -1,0 +1,47 @@
+{% extends 'homepage.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+  
+<div class="container mt-4">
+    
+    <h1 style="color: green; font-style: italic; text-align: center;"> <strong>DONORS</strong></h1>
+    
+
+        <table  class="table table-bordered mt-3 "  style=" border: green solid ;" >
+            <thead style="border: green solid;">
+
+                <tr >
+                    <th style="border: green solid;">Name</th>
+                    <th style="border: green solid;"> Address</th>
+                    <th style="border: green solid;">Contact Number</th>
+                 
+                </tr>
+            </thead>
+        
+                {% for i in doner  %}
+                <tbody >
+                <tr>
+                    <td style="border: green solid;">{{ i.name }}</td>
+                    <td style="border: green solid;">{{ i.address }}</td>
+                    <td style="border: green solid;">{{ i.contact_number }}</td>
+                   
+    
+                </tr>
+            </tbody>
+                {% endfor %}
+          
+
+
+        </table>
+</div>
+{% endblock %}
+</body>
+</html>

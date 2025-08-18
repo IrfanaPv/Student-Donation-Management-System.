@@ -1,0 +1,33 @@
+{% extends 'homepage.html' %}
+{% block content %}
+<div class="container mt-4">
+    
+    <h1 style="color: green; font-style: italic; text-align: center;"> <strong>DONATIONS</strong></h1>
+
+    
+
+        <table class="table table-bordered mt-3 " style=" border: green solid ;">
+
+            <thead style=" border: green solid ;">
+                <tr>
+                    <th style=" border: green solid ;">Student</th>
+                    <th style=" border: green solid ;">Donation Request</th>
+                    <th style=" border: green solid ;">Donor</th>
+                    <th style=" border: green solid ;">Amount Donated</th>
+                    <th style=" border: green solid ;">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in donations %}
+                <tr>
+                    <td style=" border: green solid ;">{{ i.donation_request.stud.name }}</td>
+                    <td style=" border: green solid ;">{{ i.donation_request.title }}</td>
+                    <td style=" border: green solid ;">{{ i.donor.name }}</td>
+                    <td style=" border: green solid ;">${{ i.amount }}</td>
+                    <td style=" border: green solid ;">{{ i.donated_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+{% endblock %}

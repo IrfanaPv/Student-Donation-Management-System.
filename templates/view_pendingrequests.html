@@ -1,0 +1,49 @@
+{% extends 'homepage.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+  
+<div class="container mt-4">
+    
+    <h1 style="color: green; font-style: italic; text-align: center;"> <strong>Pending Requests</strong></h1>
+    
+
+        <table  class="table table-bordered mt-3 "  style=" border: green solid ;" >
+            <thead style="border: green solid;">
+
+                <tr >
+                    <th style="border: green solid;">Student Name</th>
+                    <th style="border: green solid;"> Title</th>
+                    <th style="border: green solid;">Amount </th>
+                    <th style="border: green solid;">Status </th>
+                 
+                </tr>
+            </thead>
+        
+                {% for i in pending_req  %}
+                <tbody >
+                <tr>
+                    <td style="border: green solid;">{{ i.stud.name }}</td>
+                    <td style="border: green solid;">{{ i.description }}</td>
+                    <td style="border: green solid;">{{ i.amount_needed }}</td>
+                    <td style="border: green solid;">{{ i.status }}</td>
+                   
+    
+                </tr>
+            </tbody>
+                {% endfor %}
+          
+
+
+        </table>
+</div>
+{% endblock %}
+</body>
+</html>
