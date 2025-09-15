@@ -226,3 +226,78 @@ testimonial.slick({
   $('#bar6').barfiller();
 
 })(jQuery);
+
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   // Prefill donation amount buttons
+//   ['50','100','500'].forEach(val => {
+//     const btn = document.getElementById('prefill'+val);
+//     const amountField = document.getElementById('donationAmount');
+//     if (btn && amountField) {
+//       btn.addEventListener('click', () => {
+//         amountField.value = val;
+//       });
+//     }
+//   });
+
+//   // Auto-dismiss bootstrap alerts
+// //   const alerts = document.querySelectorAll('.alert');
+// //   alerts.forEach(alert => {
+// //     setTimeout(() => {
+// //       const bsAlert = new bootstrap.Alert(alert);
+// //       bsAlert.close();
+// //     }, 4000);
+// //   });
+// });
+// document.addEventListener('DOMContentLoaded', () => {
+//   const rows = document.querySelectorAll('.request-row');
+//   const statCards = document.querySelectorAll('.stat-card');
+
+//   // count statuses
+//   let total = rows.length;
+//   let approved = 0, pending = 0, rejected = 0;
+
+//   rows.forEach(r => {
+//     let status = (r.dataset.status || '').toLowerCase();
+//     if (status === 'approved') approved++;
+//     if (status === 'pending') pending++;
+//     if (status === 'rejected') rejected++;
+//   });
+
+//   // set numbers in cards
+//   document.getElementById('count-total').textContent = total;
+//   document.getElementById('count-approved').textContent = approved;
+//   document.getElementById('count-pending').textContent = pending;
+//   document.getElementById('count-rejected').textContent = rejected;
+
+//   // filtering
+//   function filterRows(filter) {
+//     rows.forEach(r => {
+//       let status = (r.dataset.status || '').toLowerCase();
+//       if (filter === 'all' || status === filter) {
+//         r.style.display = '';
+//       } else {
+//         r.style.display = 'none';
+//       }
+//     });
+//   }
+
+//   // click handler
+//   statCards.forEach(card => {
+//     card.addEventListener('click', () => {
+//       let filter = card.dataset.filter;
+//       filterRows(filter);
+
+//       // highlight active
+//       statCards.forEach(c => c.classList.remove('active-stat'));
+//       card.classList.add('active-stat');
+
+//       // scroll to table
+//       document.getElementById('requests-section')?.scrollIntoView({ behavior: 'smooth' });
+//     });
+//   });
+
+//   // init
+//   filterRows('all');
+// });

@@ -1,49 +1,65 @@
 {% extends 'homepage.html' %}
 {% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
 </head>
 <body>
-  
-<div class="container mt-4">
-    
-    <h1 style="color: green; font-style: italic; text-align: center;"> <strong>Pending Requests</strong></h1>
-    
+    <div class="container mt-5" style="font-family: 'Inter', sans-serif;">
 
-        <table  class="table table-bordered mt-3 "  style=" border: green solid ;" >
-            <thead style="border: green solid;">
+    <!-- Page Title -->
+    <h2 class="text-center text-primary fw-bold mb-4">
+        <i class="fas fa-clock me-2"></i>Pending Requests
+    </h2>
 
-                <tr >
-                    <th style="border: green solid;">Student Name</th>
-                    <th style="border: green solid;"> Title</th>
-                    <th style="border: green solid;">Amount </th>
-                    <th style="border: green solid;">Status </th>
-                 
-                </tr>
-            </thead>
-        
-                {% for i in pending_req  %}
-                <tbody >
-                <tr>
-                    <td style="border: green solid;">{{ i.stud.name }}</td>
-                    <td style="border: green solid;">{{ i.description }}</td>
-                    <td style="border: green solid;">{{ i.amount_needed }}</td>
-                    <td style="border: green solid;">{{ i.status }}</td>
-                   
-    
-                </tr>
-            </tbody>
-                {% endfor %}
-          
+    <!-- Pending Requests Table -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover align-middle">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Title</th>
+                        <th>Amount Needed</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in pending_req %}
+                    <tr>
+                        <td>{{ i.stud.name }}</td>
+                        <td>{{ i.description }}</td>
+                        <td>
+                            <span class="badge bg-warning text-dark">
+                                ${{ i.amount_needed }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if i.status == "Pending" %}
+                                <span class="badge bg-danger">Pending</span>
+                            {% else %}
+                                <span class="badge bg-success">{{ i.status }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">
+                            No pending requests found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-
-        </table>
 </div>
-{% endblock %}
 </body>
 </html>
+
+{% endblock %}

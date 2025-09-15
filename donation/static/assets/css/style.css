@@ -190,12 +190,12 @@
 
 /* 1. Theme default css */
 /* line 4, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_common.scss */
-body {
+/* body {
   font-family: "Muli", sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 16px;
-}
+} */
 
 /* line 10, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_common.scss */
 h1,
@@ -8312,3 +8312,42 @@ del {
 }
 
 /*# sourceMappingURL=style.css.map */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  color: #222;
+}
+
+.navbar, footer {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background: #0d6efd;
+  border-color: #0d6efd;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.form-control {
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.hero {
+  padding: 4rem 0;
+}
+.hero h1 {
+  font-weight: 700;
+  color: #0d6efd;
+}

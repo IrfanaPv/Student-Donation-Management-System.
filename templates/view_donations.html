@@ -1,33 +1,56 @@
 {% extends 'homepage.html' %}
+{% load static %}
 {% block content %}
-<div class="container mt-4">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-5" style="font-family: 'Inter', sans-serif;">
     
-    <h1 style="color: green; font-style: italic; text-align: center;"> <strong>DONATIONS</strong></h1>
+    <!-- Page Title -->
+    <h2 class="text-center text-success fw-bold mb-4">
+        <i class="fas fa-hand-holding-heart me-2"></i>Donations
+    </h2>
 
-    
+    <!-- Donations Table -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover align-middle">
+                <thead class="table-success text-center">
+                    <tr>
+                        <th>Student</th>
+                        <th>Donation Request</th>
+                        <th>Donor</th>
+                        <th>Amount Donated</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in donations %}
+                    <tr>
+                        <td>{{ i.donation_request.stud.name }}</td>
+                        <td>{{ i.donation_request.title }}</td>
+                        <td>{{ i.donor.name }}</td>
+                        <td><span class="badge bg-success">${{ i.amount }}</span></td>
+                        <td>{{ i.donated_at|date:"M d, Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No donations yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <table class="table table-bordered mt-3 " style=" border: green solid ;">
-
-            <thead style=" border: green solid ;">
-                <tr>
-                    <th style=" border: green solid ;">Student</th>
-                    <th style=" border: green solid ;">Donation Request</th>
-                    <th style=" border: green solid ;">Donor</th>
-                    <th style=" border: green solid ;">Amount Donated</th>
-                    <th style=" border: green solid ;">Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in donations %}
-                <tr>
-                    <td style=" border: green solid ;">{{ i.donation_request.stud.name }}</td>
-                    <td style=" border: green solid ;">{{ i.donation_request.title }}</td>
-                    <td style=" border: green solid ;">{{ i.donor.name }}</td>
-                    <td style=" border: green solid ;">${{ i.amount }}</td>
-                    <td style=" border: green solid ;">{{ i.donated_at }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 </div>
+</body>
+</html>
+
 {% endblock %}

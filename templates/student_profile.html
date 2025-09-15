@@ -1,22 +1,60 @@
+{% extends "homepage.html" %}
+{% load static %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form style=" border-radius: 3px; border:5px solid green;  width: 25%; height: 500px; position: relative; left: 550px;top: 130px;" action="" > <br>
-     <h1 style=" text-align: center;   color: green;"> <strong>Profile</strong> </h1> <br>
-    <span style="position: relative; left: 12px; font-size: large;">Name: </span> <input type="text" class="form-label" style="border: 5px green; position: relative; left: 10px; font-size: large; " name="" id="" value="{{ p.name }}"><br><br>
-    <span style="position: relative; left: 12px; font-size: large;">Age: </span><input type="number" style="border: 2px green;  position: relative; left: 10px; font-size: large; " name="" id="" value="{{ p.age }}"><br><br>
-    <span style="position: relative; left: 12px; font-size: large;"> Email: </span> <input type="email" name="" style="border: 2px green;  position: relative; left: 10px; font-size: large;" id="" value="{{ p.email }}"><br><br>
-    <span style="position: relative; left: 12px; font-size: large;">Contact Number: </span> <input type="number" name="" style="border: 2px green;  position: relative; left: 10px; font-size: large;" id="" value="{{ p.contact_number }}"><br><br>
-    <span style="position: relative; left: 12px; font-size: large;">Address: </span> <input type="text" name="" style="border: 2px green;  position: relative; left: 10px; font-size: large;" id="" value="{{ p.address }}"><br><br>
-    <a href="{% url 'update_student'  %}" class="btn btn-danger" style="position: relative; left: 100px;top: 24px; width: 170px;">Edit</a>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh; font-family: 'Inter', sans-serif;">
+  <div class="card shadow-lg border-0" style="width: 28rem;">
+    <div class="card-header text-center bg-primary text-white">
+      <h3 class="mb-0"><i class="fas fa-user-graduate me-2"></i>Student Profile</h3>
+    </div>
+    <div class="card-body p-4">
 
-    </form>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Full Name</label>
+        <input type="text" class="form-control shadow-sm" value="{{ p.name }}" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Age</label>
+        <input type="number" class="form-control shadow-sm" value="{{ p.age }}" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+        <input type="email" class="form-control shadow-sm" value="{{ p.email }}" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Contact Number</label>
+        <input type="number" class="form-control shadow-sm" value="{{ p.contact_number }}" readonly>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Address</label>
+        <input type="text" class="form-control shadow-sm" value="{{ p.address }}" readonly>
+      </div>
+
+      <div class="d-grid gap-2">
+        <a href="{% url 'student_dashboard' %}" class="btn btn-outline-secondary shadow-sm">
+          <i class="fas fa-home me-2"></i>Back to Dashboard
+        </a>
+        <a href="{% url 'update_student' %}" class="btn btn-primary shadow-sm">
+          <i class="fas fa-user-edit me-2"></i>Edit Profile
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
+{% endblock %}

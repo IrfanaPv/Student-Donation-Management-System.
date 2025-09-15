@@ -1,4 +1,5 @@
 {% extends 'homepage.html' %}
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,9 +7,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Material Design Registration Form</title>
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Project custom styles -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Project custom scripts -->
+<script src="{% static './assets/js/main.js' %}"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -38,6 +54,8 @@
         .input-field {
             position: relative;
             margin-bottom: 20px;
+            width: 100%;
+            height: 40px;
         }
 
         .input-field input {
@@ -103,7 +121,7 @@
     </style>
 </head>
 <body>
- {% if messages %}
+    {% if messages %}
   {% for message in messages %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ message }}
@@ -112,81 +130,52 @@
   {% endfor %}
 {% endif %}
 
-
-    <div class="form-container">
-        <h2>Register Here....!</h2>
-        <form action="{% url 'save_donor' %}" method="post" onsubmit="return validateForm()">
-            {% csrf_token %}
-            <div class="input-field">
-                <input type="text"name="uname"required>
-                <label for="uname">Username</label>
+<form action="{% url 'save_donor' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+        <h4 class="mb-3">Register Donor</h2>
+        
+                <label >Username</label>
+                <input type="text" class="input-field" id="username" required placeholder=" " name="uname"><br>
+        
           
-            </div>
-            <div class="input-field">
-                <input type="text" id="dname"name="dname"pattern="^[A-Za-z]+$"title="Only alphabets(A-Z,a-z) are allowed." required >
-                <label for="dname">Name</label>
-            </div>
-                <div class="input-field">
-                <input type="email" id="demail"name="demail"required>
-                <label for="demail">Email</label>
-            </div>
-            <div class="input-field">
-                <input type="tel" id="cnumber"name='cnumber'  pattern="[0-9]{10}"  title="Enter valid 10-digit phone number"required>
-                <label for="cnumber">Contact Number</label>
-            </div>
-            <div class="input-field">
-                <input id="daddress"name="daddress" required>
-                <label for="daddress">Address</label>
-            </div>
-            <div class="input-field">
-                <input type="password" id="dpass"name="dpass"   minlength="8" pattern="(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[\W_].{8,})" title="Password must be atleast 8 characters long and include uppercase,lowercase,number,and specialcharacters."required >
-                <label for="dpass">Password</label>
-            </div>
-  
-            <button type="submit" class="btn-submit">Sign Up</button>
+                <label>Name</label>
+                <input type="text" class="input-field" id="dname" required placeholder=" " name="dname"pattern="^[A-Za-z]+$"title="Only alphabets(A-Z,a-z) are allowed." ><br>
+               
+               
+                <label >Email</label>
+                <input type="email" class="input-field" id="demail" required placeholder=" " name="demail"><br>
+                
+                <label >Contact Number</label>
+                <input type="tel" class="input-field" id="cnumber" required placeholder=" " name="cnumber" pattern="[0-9]{10}"  title="Enter valid 10-digit phone number"><br>
+                <label >Address</label>
+                <input type="text" class="input-field" id="daddress" required placeholder=" " name="daddress" ><br>
+               
+            
+                <label >Password</label>
+                <input type="password"class="input-field" id="dpass" name="dpass" required placeholder=" " minlength="8" pattern="(?=.\d)(?=.[a-z])(?=.[A-Z]).{8,})" title="Password must be atleast 8 characters long and include uppercase,lowercase,and number." >
+                
+            
+       
+            <button class="btn btn-primary" type="submit" class="btn-submit">Sign Up</button>
         </form>
         <div class="text-center">
             <p>Already have an account? <a href="{% url 'login_page' %}">Login</a></p>
         </div><br><br>
+    </div>
+    </div>
+    </div>
 
     </div>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9309db792c6c6141","version":"2025.3.0","r":1,"token":"e3989549a1dc4608a6186d1f673ec8f6","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous">
-{% comment %} 
-  function validateForm() {
-    var name = document.getElementById("name").value.trim();
-    var email = document.getElementById("demail").value.trim();
-    var contact = document.getElementById("cnumber").value.trim();
-    var address = document.getElementById("daddress").value.trim();
-    var password = document.getElementById("dpass").value.trim();
 
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    var contactPattern = /^[0-9]{10}$/;
-
-    if (name === "" || email === "" || contact === "" || address === "" || password === "") {
-      alert("All fields are required.");
-      return false;
-    }
-
-    if (!emailPattern.test(email)) {
-      alert("Enter a valid email address.");
-      return false;
-    }
-
-    if (!contactPattern.test(contact)) {
-      alert("Contact number must be 10 digits.");
-      return false;
-    }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters.");
-      return false;
-    }
-
-    return true;
-  } {% endcomment %}
 
 </script>
 </body>
 </html>
-{% endblock %}
+</form>
+{% endblock %}

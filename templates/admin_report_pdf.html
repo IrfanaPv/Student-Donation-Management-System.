@@ -1,113 +1,194 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Admin Full Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Helvetica', sans-serif;
-            margin: 20px;
-        }
-        h1, h2 {
+            margin: 40px;
+            background-color: #f9f9f9;
             color: #2c3e50;
+        }
+        h1 {
             text-align: center;
+            color:blue;
+            margin-bottom: 10px;
+        }
+        h3 {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: blue;
+            margin-top: 40px;
+            border-bottom: 2px solid blue;
+            padding-bottom: 5px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
         table, th, td {
-            border: 1px solid #2c3e50;
-        }
-        th, td {
-            padding: 8px 12px;
-            text-align: left;
+            border: 2px solid #ddd;
         }
         th {
-            background-color: #27ae60;
+            background-color: blue;
             color: white;
+            font-weight: bold;
+            text-align: center;
+            height:40px;
+        }
+        td {
+            padding: 10px 14px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f4fdf7;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+        .stat-box {
+            background: blue;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
     <h1>Admin Full Report</h1>
-    <h3 style="font-size: x-large; font-style: italic;">
-        <strong>Total Donations: {{ total_donation_amount }}</strong><br>
-        <strong>Total Donation Requests: {{ total_donationrequests }}</strong>
-    </h3>
 
+    <!-- Statistics -->
+    <div class="stats">
+        <div class="stat-box">Total Donations: ${{ total_donation_amount }}</div>
+        <div class="stat-box">Total Requests: {{ total_donationrequests }}</div>
+    </div>
+
+    <!-- Students -->
     <h2>Students</h2>
+
     <table>
-        <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Contact Number</th>
-            <th>Address</th>
-        </tr>
-        {% for student in students %}
-        <tr>
-            <td>{{ student.name }}</td>
-            <td>{{ student.age }}</td>
-            <td>{{ student.contact_number }}</td>
-            <td>{{ student.address }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.contact_number }}</td>
+                <td>{{ student.address }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No students found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
+    <!-- Donors -->
     <h2>Donors</h2>
     <table>
-        <tr>
-            <th>Name</th>
-            <th>Contact Number</th>
-            <th>Address</th>
-        </tr>
-        {% for donor in donors %}
-        <tr>
-            <td>{{ donor.name }}</td>
-            <td>{{ donor.contact_number }}</td>
-            <td>{{ donor.address }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for donor in donors %}
+            <tr>
+                <td>{{ donor.name }}</td>
+                <td>{{ donor.contact_number }}</td>
+                <td>{{ donor.address }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No donors found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
+    <!-- Donations -->
     <h2>Donations</h2>
     <table>
-        <tr>
-            <th>Donor</th>
-            <th>Donation Request</th>
-            <th>Amount Donated</th>
-            <th>Date</th>
-        </tr>
-        {% for donation in donations %}
-        <tr>
-            <td>{{ donation.donor.name }}</td>
-            <td>{{ donation.donation_request.title }}</td>
-            <td>{{ donation.amount }}</td>
-            <td>{{ donation.donated_at|date:"Y-m-d" }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Donor</th>
+                <th>Donation Request</th>
+                <th>Amount Donated</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for donation in donations %}
+            <tr>
+                <td>{{ donation.donor.name }}</td>
+                <td>{{ donation.donation_request.title }}</td>
+                <td>${{ donation.amount }}</td>
+                <td>{{ donation.donated_at|date:"Y-m-d" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No donations found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
+    <!-- Donation Requests -->
     <h2>Donation Requests</h2>
     <table>
-        <tr>
-            <th>Title</th>
-            <th>Student</th>
-            <th>Amount Needed</th>
-            <th>Amount Raised</th>
-            <th>Status</th>
-        </tr>
-        {% for request in donation_requests %}
-        <tr>
-            <td>{{ request.title }}</td>
-            <td>{{ request.stud.name }}</td>
-            <td>{{ request.amount_needed }}</td>
-            <td>{{ request.amount_raised }}</td>
-            <td>{{ request.status }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Student</th>
+                <th>Amount Needed</th>
+                <th>Amount Raised</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in donation_requests %}
+            <tr>
+                <td>{{ request.title }}</td>
+                <td>{{ request.stud.name }}</td>
+                <td>${{ request.amount_needed }}</td>
+                <td>${{ request.amount_raised }}</td>
+                <td>{{ request.status|title }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No donation requests found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-  
 
 </body>
 </html>

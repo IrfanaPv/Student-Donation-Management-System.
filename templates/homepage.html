@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -9,6 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Project custom styles -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 
 	<!-- CSS here -->
@@ -26,6 +37,11 @@
 	<link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Project custom scripts -->
+<script src="{% static 'assets/js/main.js' %}"></script>
 </head>
 <body>
  
@@ -71,7 +87,7 @@
                                                 <li><a href="{% url 'home_page' %}">Home</a></li>
                                                 <li><a href="{% url 'register_student' %}">Request Help</a></li>
                                                 <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                         Register
                                                     </a>
                                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -350,4 +366,95 @@
     <script src="{% static './assets/js/main.js' %}"></script>
     
     </body>
+</html> {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Donation | Home</title>
+    <!-- CSS & Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="{% url 'home_page' %}">
+          <i class="fas fa-hand-holding-heart"></i> Charity
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'register_student' %}">Student Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'register_donor' %}">Donor Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login_page' %}">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero text-center py-5 bg-light">
+      <div class="container">
+        <h1 class="fw-bold text-primary mb-3">Welcome to Student Donation Management</h1>
+        <p class="lead text-muted mb-4">Support students by contributing to their needs — education, books, and essentials.</p>
+        <a href="{% url 'register_donor' %}" class="btn btn-primary btn-lg">
+          <i class="fas fa-hand-holding-usd me-2"></i> Donate Now
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-4">
+            <div class="card p-4 h-100">
+              <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+              <h5 class="fw-bold">For Students</h5>
+              <p class="text-muted">Submit requests with valid proof. Approved requests will be visible for donors.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card p-4 h-100">
+              <i class="fas fa-hand-holding-heart fa-3x text-success mb-3"></i>
+              <h5 class="fw-bold">For Donors</h5>
+              <p class="text-muted">View requests, filter by category/place, and donate securely with ease.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card p-4 h-100">
+              <i class="fas fa-user-shield fa-3x text-warning mb-3"></i>
+              <h5 class="fw-bold">For Admin</h5>
+              <p class="text-muted">Approve student requests, monitor donations, and manage platform activity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-1">&copy; 2025 Student Donation Management. All rights reserved.</p>
+        <div>
+          <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-light"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
 </html>
+{% endblock %}
